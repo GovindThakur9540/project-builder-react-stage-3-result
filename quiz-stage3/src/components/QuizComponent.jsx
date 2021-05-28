@@ -1,0 +1,105 @@
+import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
+import axios from 'axios';
+
+
+export default class QuizComponent extends Component {
+    constructor(props){
+        super(props)
+        this.state={
+            indexValue:0,
+            datas:[]
+        }
+    }
+
+
+    //Move to previous Qustion
+    previousQues=()=>{
+        if(this.state.indexValue === 0){
+          alert("You need to start from here!")
+        }
+        else if(this.state.indexValue>0){
+          this.setState({indexValue:this.state.indexValue-1})
+        }
+    }
+    //Move to next question
+    nextQues =()=>{
+        if(this.state.indexValue<9)
+        {
+            this.setState({indexValue: this.state.indexValue + 1})
+            // setTimeout (this.hide,1000)
+        }
+        else{
+            alert("All Question Completed Click on Quit to Know Your result")
+        }
+    }
+    //Verify answer
+    checkAnswer = (e)=>{
+        let answers = e.target.value
+        let btn = document.getElementById('answers')
+        console.log(this.state.datas[this.state.indexValue].answer +" " +answers)
+        if (this.state.datas[this.state.indexValue].answer===answers)
+        {   
+            btn.innerText="Correct"
+            btn.style.backgroundColor='green'
+            btn.style.display="block"
+            this.nextQues()
+            this.setState({
+                correct : this.state.correct+1
+            })
+        }
+        else
+        {
+            btn.innerText = "Wrong"
+            btn.style.backgroundColor = 'red'
+            btn.style.animation = 'hideIt 1s forwards'
+            btn.style.display = "block"
+            this.nextQues()
+        }
+    }
+
+   componentDidMount(){
+       axios.get('https://my-json-server.typicode.com/Naveen132895/quiz-api/questions').then((res)=>{
+            this.setState({
+                datas:res.data
+            })
+        
+       })
+   }
+    render() {
+        const isdata = this.state.datas.length
+        const resultdata = this.state.datas[this.state.indexValue]
+      
+            return (
+               <>
+                    
+                    <div className="main-container">
+                        {isdata > 0 ?
+                        <div className="quiz-container">
+                            <h1>Question</h1>
+                            <div className="question-container">
+                                <h4>{resultdata.id} of 10</h4>
+                                    <h3>{resultdata.question}</h3>
+                            </div>
+                            <div className="options" id="options">
+                                <button className="button" onClick={this.checkAnswer} value={resultdata.options[0]}>{resultdata.options[0]}</button>
+                                    <button className="button" onClick={this.checkAnswer} value={resultdata.options[1]}>{resultdata.options[1]}</button>
+                                <button className="button" onClick={this.checkAnswer} value={resultdata.options[2]}>{resultdata.options[2]}</button>
+                                <button className="button" onClick={this.checkAnswer} value={resultdata.options[3]}>{resultdata.options[3]}</button>
+                            </div>
+                            <div className="buttons">
+                                <button onClick={this.previousQues}>Previous</button>
+                                <button onClick={ this.nextQues}>Next</button>
+                                <button><Link to="/ResultComponent" className="link">Quit</Link></button>  
+                            </div>
+                            <div>
+                                <button id="answers"></button>
+                            </div>
+                        </div>
+                        :<div></div>}
+                    </div>
+                </>  
+            );
+          
+    }
+}
