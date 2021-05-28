@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/project-builder-react-stage-3-result/static/css/main.1884b737.chunk.css",
+    "main.js": "/project-builder-react-stage-3-result/static/js/main.2465e2b7.chunk.js",
+    "main.js.map": "/project-builder-react-stage-3-result/static/js/main.2465e2b7.chunk.js.map",
+    "runtime-main.js": "/project-builder-react-stage-3-result/static/js/runtime-main.c81a8d7b.js",
+    "runtime-main.js.map": "/project-builder-react-stage-3-result/static/js/runtime-main.c81a8d7b.js.map",
+    "static/js/2.0f9f15dd.chunk.js": "/project-builder-react-stage-3-result/static/js/2.0f9f15dd.chunk.js",
+    "static/js/2.0f9f15dd.chunk.js.map": "/project-builder-react-stage-3-result/static/js/2.0f9f15dd.chunk.js.map",
+    "static/js/3.fcb9e6a1.chunk.js": "/project-builder-react-stage-3-result/static/js/3.fcb9e6a1.chunk.js",
+    "static/js/3.fcb9e6a1.chunk.js.map": "/project-builder-react-stage-3-result/static/js/3.fcb9e6a1.chunk.js.map",
+    "index.html": "/project-builder-react-stage-3-result/index.html",
+    "static/css/main.1884b737.chunk.css.map": "/project-builder-react-stage-3-result/static/css/main.1884b737.chunk.css.map",
+    "static/js/2.0f9f15dd.chunk.js.LICENSE.txt": "/project-builder-react-stage-3-result/static/js/2.0f9f15dd.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c81a8d7b.js",
+    "static/js/2.0f9f15dd.chunk.js",
+    "static/css/main.1884b737.chunk.css",
+    "static/js/main.2465e2b7.chunk.js"
+  ]
+}
