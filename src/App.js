@@ -1,29 +1,51 @@
-import React from 'react';
+import React, { Component } from 'react';
 import HomeComponent from './components/HomeComponent';
 import QuizComponent from './components/QuizComponent';
 import ResultComponent from './components/ResultComponent';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import './App.css';
 
-function App(){
+class App extends Component{
+  constructor(){
+    super()
+    this.state={
+      correct: 0, 
+      attempt:0
+    }
+  }
+
+  checkCorrect = () =>{
+    this.setState({
+      correct: this.state.correct+1
+    })
+  }
+
+  isAttempt = () =>{
+    this.setState({
+      correct: this.state.attempt+1
+    })
+  }
+
+  render(){
   return(
     <div className ="App">
       <Router>
         <Switch>
-          <Route exact path = '/'>
+          <Route exact path = '/project-builder-react-stage-3-result'>
             <HomeComponent />
           </Route>
           <Route path="/QuizComponent">
-            <QuizComponent />
+            <QuizComponent checkCorrect={this.checkCorrect} isAttempt={this.isAttempt}/>
           </Route>
           <Route path='/ResultComponent'>
-            <ResultComponent />
+            <ResultComponent {...this.state} />
           </Route>
         </Switch>
       </Router>
     </div>
     
   );
+}
 }
 
 export default App;

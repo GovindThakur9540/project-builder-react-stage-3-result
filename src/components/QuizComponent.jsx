@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
-
 export default class QuizComponent extends Component {
     constructor(props){
         super(props)
         this.state={
             indexValue:0,
-            datas:[]
+            datas:[], 
+            attempt: 0
         }
     }
+
 
 
     //Move to previous Qustion
@@ -27,17 +28,23 @@ export default class QuizComponent extends Component {
         if(this.state.indexValue<9)
         {
             this.setState({indexValue: this.state.indexValue + 1})
-            // setTimeout (this.hide,1000)
+            setTimeout (this.hide,600)
         }
         else{
             alert("All Question Completed Click on Quit to Know Your result")
         }
+    }
+
+    hide = () => {
+        let btn = document.getElementById('answers')
+        btn.style.display = 'none'
     }
     //Verify answer
     checkAnswer = (e)=>{
         let answers = e.target.value
         let btn = document.getElementById('answers')
         console.log(this.state.datas[this.state.indexValue].answer +" " +answers)
+        this.props.isAttempt()
         if (this.state.datas[this.state.indexValue].answer===answers)
         {   
             btn.innerText="Correct"
@@ -46,7 +53,9 @@ export default class QuizComponent extends Component {
             this.nextQues()
             this.setState({
                 correct : this.state.correct+1
+                // this.props.correctCorrect()
             })
+            
         }
         else
         {
@@ -69,7 +78,7 @@ export default class QuizComponent extends Component {
     render() {
         const isdata = this.state.datas.length
         const resultdata = this.state.datas[this.state.indexValue]
-      
+        console.log(this.state.correct)
             return (
                <>
                     
@@ -79,11 +88,12 @@ export default class QuizComponent extends Component {
                             <h1>Question</h1>
                             <div className="question-container">
                                 <h4>{resultdata.id} of 10</h4>
-                                    <h3>{resultdata.question}</h3>
+                                <h3>{resultdata.question}</h3>
+
                             </div>
                             <div className="options" id="options">
                                 <button className="button" onClick={this.checkAnswer} value={resultdata.options[0]}>{resultdata.options[0]}</button>
-                                    <button className="button" onClick={this.checkAnswer} value={resultdata.options[1]}>{resultdata.options[1]}</button>
+                                <button className="button" onClick={this.checkAnswer} value={resultdata.options[1]}>{resultdata.options[1]}</button>
                                 <button className="button" onClick={this.checkAnswer} value={resultdata.options[2]}>{resultdata.options[2]}</button>
                                 <button className="button" onClick={this.checkAnswer} value={resultdata.options[3]}>{resultdata.options[3]}</button>
                             </div>
