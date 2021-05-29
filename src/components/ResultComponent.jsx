@@ -26,7 +26,7 @@ export default class ResultComponent extends Component{
                 </div>
                 <div className="button-container">
                     <button><Link to="/QuizComponent" className="link">Play Again</Link></button>
-                    <button><Link to="/" className="link">Back to Home</Link></button>
+                    <button><Link to="/project-builder-react-stage-3-result" className="link">Back to Home</Link></button>
                 </div>
             </div>
         )

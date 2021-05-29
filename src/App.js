@@ -22,7 +22,7 @@ class App extends Component{
 
   isAttempt = () =>{
     this.setState({
-      correct: this.state.attempt+1
+      attempt: this.state.attempt+1
     })
   }
 
