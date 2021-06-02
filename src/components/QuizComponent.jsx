@@ -28,7 +28,7 @@ export default class QuizComponent extends Component {
         if(this.state.indexValue<9)
         {
             this.setState({indexValue: this.state.indexValue + 1})
-            setTimeout (this.hide,600)
+            setTimeout (this.hide, 600)
         }
         else{
             alert("All Question Completed Click on Quit to Know Your result")
@@ -64,6 +64,10 @@ export default class QuizComponent extends Component {
             btn.style.animation = 'hideIt 1s forwards'
             btn.style.display = "block"
             this.nextQues()
+            this.setState({
+                wrong:(this.state.attempt - this.state.correct)+1
+            })
+            this.props.checkWrong()
         }
     }
 

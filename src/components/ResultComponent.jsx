@@ -22,7 +22,7 @@ export default class ResultComponent extends Component{
                     <p>Total number of question:<span>10</span></p>
                     <p>Number of attempted question:<span>{this.props.attempt}</span></p>
                     <p>Number of Correct Answers:<span>{this.props.correct}</span></p>
-                    <p>Number of Wrong Answers:<span>{10-this.props.correct}</span></p>
+                    <p>Number of Wrong Answers:<span>{this.props.wrong}</span></p>
                 </div>
                 <div className="button-container">
                     <button><Link to="/QuizComponent" className="link">Play Again</Link></button>
